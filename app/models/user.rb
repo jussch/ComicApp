@@ -1,7 +1,9 @@
 class User < ActiveRecord::Base
-  validates :username, :password_digest, :session_token, presence: true
+  validates :username, :password_digest, presence: true
   validates :password, length: {minimum: 6, allow_nil: true}
   validates :username, uniqueness: true
+
+  has_many :sessions
 
   def User.find_by_creds(params)
     user = User.find_by_username(params[:username])
@@ -21,12 +23,6 @@ class User < ActiveRecord::Base
 
   def is_password?(password)
     BCript::Password.new(self.password_digest).is_password?(password)
-  end
-
-  def reset_token!
-    self.session_token = SecureRandom.urlsafe_base64
-    self.save!
-    self.session_token
   end
 
   private

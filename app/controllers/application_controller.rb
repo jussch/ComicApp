@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
 
   def current_user
     return nil if session[:token].nil?
-    @cu ||= User.find_by_session_token(session[:token])
+    @cu ||= Session.find_by_token(session[:token]).user
   end
 
   def signed_in?
@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
 
   def sign_in!(user)
     @cu = user
-    session[:token] = user.reset_token!
+    session[:token] = Session.generate(@cu).token
   end
 
 end
