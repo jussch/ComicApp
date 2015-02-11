@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   end
 
   attr_reader :password
-  after_initialize :ensure_session_token
+  after_initialize :ensure_session_token, :ensure_status
 
   def password=(password)
     @password = password
@@ -32,6 +32,10 @@ class User < ActiveRecord::Base
   private
   def ensure_session_token
     self.session_token ||= SecureRandom.urlsafe_base64
+  end
+
+  def ensure_status
+    self.status ||= "NORMAL"
   end
 
 end
