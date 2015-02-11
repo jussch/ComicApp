@@ -7,8 +7,9 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :signed_in?
 
   def current_user
-    return nil if session[:token].nil?
-    @cu ||= Session.find_by_token(session[:token]).user
+    sesh = Session.find_by_token(session[:token])
+    return nil unless sesh
+    @cu ||= sesh.user
   end
 
   def signed_in?

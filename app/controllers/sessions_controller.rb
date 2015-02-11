@@ -14,11 +14,11 @@ class SessionsController < ApplicationController
     end
   end
 
-  def destroy
+  def destroy_current
     sesh = Session.find_by_token(session[:token])
     sesh.destroy
     session[:token] = nil
-    redirect_to new_sessions_url
+    redirect_to new_session_url
   end
 
   private
