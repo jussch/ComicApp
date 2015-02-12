@@ -6,6 +6,9 @@ class User < ActiveRecord::Base
   validates :username, uniqueness: true
 
   has_many :sessions
+  has_many :authored_comics,
+    class_names: "Comic"
+    foreign_key: :author_id
 
   def User.find_by_creds(params)
     user = User.find_by_username(params[:username])
