@@ -5,9 +5,9 @@ window.ComicApp = {
   Routers: {},
   initialize: function() {
     ComicApp.RootRouter = new ComicApp.Routers.Root({
-      contentEl: $('#content'),
-      headerEl: $('#header'),
-      modalEl: $('#modal')
+      $contentEl: $('#content'),
+      $headerEl: $('#header'),
+      $modalEl: $('#modal')
     });
     ComicApp.CU = new ComicApp.Models.CurrentUser();
     ComicApp.CU.fetch();

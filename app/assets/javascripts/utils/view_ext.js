@@ -8,7 +8,7 @@ Backbone.ViewExt = Backbone.CompositeView.extend({
     var options = {};
     options[this.modelName] = this.model;
     options[this.collectionName] = this.collection;
-    
+
     var content = this.template(options);
     this.renderEvent(content);
     this.$el.html(content);
@@ -30,7 +30,10 @@ Backbone.ViewExt = Backbone.CompositeView.extend({
     if (this.collection) {
       this.collection.add(this.model, { merge: true });
     }
-    Backbone.history.navigate(this.modelName + "s/" + this.model.id, { trigger: true });
+    Backbone.history.navigate(
+      "/" + this.modelName + "s/" + this.model.id,
+      { trigger: true }
+    );
   },
 
   submitError: function (model, resp) {

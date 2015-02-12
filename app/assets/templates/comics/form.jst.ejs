@@ -1,0 +1,26 @@
+<h1 class="title comic-form-title">Submit a new Comic</h1>
+
+<form id="comic-form" action="NOACTION" method="post">
+
+  <label class="input-label">
+    <strong class="input-name">Title</strong>
+    <input type="text" name="comic[title]" value="<%= comic.get('title') %>" class="input-input">
+  </label>
+
+  <label class="input-label">
+    <strong class="input-name">Body</strong>
+    <textarea name="comic[body]" rows="8" cols="40" class="input-input"><%= comic.get('body') %></textarea>
+  </label>
+
+  <label class="input-label">
+    <strong class="input-name">Image</strong>
+    <input type="file" name="comic[image]" value="" class="input-input input-file">
+  </label>
+
+  <figure class="image-preview">
+    <img src="<%= comic.get('image_url') %>" alt="" />
+  </figure>
+
+  <button class="input-button">Submit</button>
+
+</form>
