@@ -4,15 +4,18 @@ window.ComicApp = {
   Views: {},
   Routers: {},
   initialize: function() {
+    ComicApp.CU = new ComicApp.Models.CurrentUser();
+    ComicApp.CU.fetch();
+    ComicApp.Comics = new ComicApp.Collections.Comics();
+    ComicApp.Users = new ComicApp.Collections.Users();
+
     ComicApp.RootRouter = new ComicApp.Routers.Root({
       $contentEl: $('#content'),
       $headerEl: $('#header'),
       $modalEl: $('#modal')
     });
-    ComicApp.CU = new ComicApp.Models.CurrentUser();
-    ComicApp.CU.fetch();
-    ComicApp.Comics = new ComicApp.Collections.Comics();
-    ComicApp.Users = new ComicApp.Collections.Users();
+
+    Backbone.history.start();
   }
 };
 

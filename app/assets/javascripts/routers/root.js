@@ -2,14 +2,15 @@ ComicApp.Routers.Root = Backbone.Router.extend({
 
   initialize: function (options) {
     _.extend(this, options);
+
   },
 
   routes: {
     "": "redirect",
-    "/comics": "comicsIndex",
-    "/comics/new": "comicsNew",
-    "/comics/:id": "comicsShow",
-    "/comics/:id/edit": "comicsEdit"
+    "comics": "comicsIndex",
+    "comics/new": "comicsNew",
+    "comics/:id": "comicsShow",
+    "comics/:id/edit": "comicsEdit"
   },
 
   redirect: function () {
@@ -22,7 +23,7 @@ ComicApp.Routers.Root = Backbone.Router.extend({
     });
     ComicApp.Comics.fetch();
 
-    this.$contentEl.html(view.render().$el);
+    this.swapView(view);
   },
 
   comicsNew: function () {
@@ -31,7 +32,7 @@ ComicApp.Routers.Root = Backbone.Router.extend({
       model: new ComicApp.Models.Comic()
     });
 
-    this.$contentEl.html(view.render().$el);
+    this.swapView(view);
   },
 
   comicsShow: function (id) {
@@ -39,7 +40,7 @@ ComicApp.Routers.Root = Backbone.Router.extend({
       model: ComicApp.Comics.getOrFetch(id)
     });
 
-    this.$contentEl.html(view.render().$el);
+    this.swapView(view);
   },
 
   comicsEdit: function (id) {
@@ -47,6 +48,13 @@ ComicApp.Routers.Root = Backbone.Router.extend({
       collection: ComicApp.Comics,
       model: ComicApp.Comics.getOrFetch(id)
     });
+
+    this.swapView(view);
+  },
+
+  swapView: function (view) {
+    this._currentView && this._currentView.remove();
+    this._currentView = view;
 
     this.$contentEl.html(view.render().$el);
   }

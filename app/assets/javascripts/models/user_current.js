@@ -11,7 +11,7 @@ ComicApp.Models.CurrentUser = ComicApp.Models.User.extend({
       return resp;
     } else {
       this.signedIn = true;
-      return ComicApp.Models.User.parse.call(this, resp);
+      return ComicApp.Models.User.prototype.parse.call(this, resp);
     }
   }
 

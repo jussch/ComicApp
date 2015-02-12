@@ -5,6 +5,10 @@ ComicApp.Models.Comic = Backbone.Model.extend({
   toJSON: function () {
     var json = { comic: _.clone( this.attributes ) };
 
+    if (this._temp) {
+      json.comic.image = this._temp.image;
+    }
+
     return json;
   }
 

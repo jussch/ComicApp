@@ -27,6 +27,9 @@ Backbone.ViewExt = Backbone.CompositeView.extend({
 
   submitSuccess: function (model, resp) {
     this.submitButtonToggle(false);
+    if (this.model._temp) {
+      delete this.model._temp;
+    }
     if (this.collection) {
       this.collection.add(this.model, { merge: true });
     }
