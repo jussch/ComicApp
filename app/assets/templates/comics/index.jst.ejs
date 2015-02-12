@@ -8,6 +8,6 @@
   <% }) %>
 </ul>
 
-<% if (ComicApp.CU.signedIn)  { %>
+<% if (ComicApp.CU.signedIn && ComicApp.CU.isEditor())  { %>
   <a href="#/comics/new">Or Make a new Comic</a>
 <% } %>

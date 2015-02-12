@@ -22,12 +22,12 @@ ComicApp.Views.SessionForm = Backbone.ViewExt.extend({
       data: {user: data},
       success: function (resp) {
         ComicApp.CU.fetch();
-        ComicApp.RootRouter.trigger('displayInfo', resp.responseJSON);
+        ComicApp.RootRouter.trigger('displayInfo', resp);
         ComicApp.RootRouter.trigger('removeModal');
       }.bind(this),
       error: function (resp) {
         this.submitButtonToggle(false);
-        ComicApp.RootRouter.trigger('displayInfo', resp.responseJSON);
+        ComicApp.RootRouter.trigger('displayInfo', resp);
       }.bind(this)
     });
   }

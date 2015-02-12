@@ -4,6 +4,7 @@ Backbone.ViewExt = Backbone.CompositeView.extend({
   collectionName: "collection",
   renderEvent: function (content) {},
   requireSignIn: false,
+  requreEditor: false,
 
   initialize: function (options) {
     _.extend(this, options);
@@ -46,6 +47,7 @@ Backbone.ViewExt = Backbone.CompositeView.extend({
     this.submitButtonToggle(false);
     if (this.model._temp) {
       delete this.model._temp;
+      this.model.fetch();
     }
     if (this.collection) {
       this.collection.add(this.model, { merge: true });
@@ -66,10 +68,17 @@ Backbone.ViewExt = Backbone.CompositeView.extend({
 
   submitForm: function (event) {
     event.preventDefault();
+    var errors = [];
 
-    if (this.requireSignIn) {
-      ComicApp.RootRouter.trigger('displayInfo', {errors: ["You Must be Signed In"]});
-      return
+    if (this.requireSignIn && !ComicApp.CU.signedIn) {
+      errors.push("You must be signed in");
+    }
+    if (this.requireEditor && !ComicApp.CU.isEditor()) {
+      errors.push("You must have an editor account");
+    }
+    if (errors.length > 0) {
+      ComicApp.RootRouter.trigger('displayInfo', { errors: errors });
+      return;
     }
 
     var target = $(event.currentTarget);

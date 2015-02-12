@@ -4,6 +4,7 @@ ComicApp.Views.ComicsForm = Backbone.ViewExt.extend({
   modelName: "comic",
   collectionName: "comics",
   requireSignIn: true,
+  requireEditor: true,
 
   events: {
     'submit #comic-form': 'submitForm',

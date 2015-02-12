@@ -1,9 +1,8 @@
 <h1 class="title comic-title"><%= comic.escape('title') %></h1>
 
-<a href="#comics">Back to Index</a>
-
-<% if (parseInt(comic.get('author_id')) === ComicApp.CU.id) { %>
+<% if (parseInt(comic.get('author_id')) === ComicApp.CU.id || ComicApp.CU.isAdmin()) { %>
   <button class="delete-comic">Delete This Comic</button>
+  <a href="#comics/<%= comic.id %>/edit">Edit This Comic</a>
 <% } %>
 
 <figure class="comic-picture">

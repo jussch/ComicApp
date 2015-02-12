@@ -10,6 +10,9 @@ ComicApp.Views.ComicsShow = Backbone.ViewExt.extend({
 
   deleteComic: function (event) {
     event.preventDefault();
+    if (!confirm("Are you sure you want to delete this comic?")) {
+      return;
+    }
     ComicApp.Comics.remove(this.model);
     this.model.destroy();
     Backbone.history.navigate("comics", { trigger: true });

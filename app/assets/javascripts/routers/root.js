@@ -4,6 +4,7 @@ ComicApp.Routers.Root = Backbone.Router.extend({
     _.extend(this, options);
     this.listenTo(this, "swapModal", this.swapModal);
     this.listenTo(this, "removeModal", this.removeModal);
+    this.listenTo(this, "displayInfo", this.displayInfo);
     this.header = new ComicApp.Views.HeaderShow({ model: ComicApp.CU });
     this.$headerEl.html(this.header.render().$el);
   },
@@ -74,7 +75,25 @@ ComicApp.Routers.Root = Backbone.Router.extend({
     this.removeModal();
     this._currentModal = view;
     this.$modalEl.html(view.render().$el);
-  }
+  },
 
+  displayInfo: function (resp) {
+    var self = this;
+    this.$infoEl.children("ul").empty();
+    if (resp.notices) {
+      resp.notices.forEach(function (str) {
+        var $li = $("<li class='notice'>");
+        $li.html(str);
+        self.$infoEl.children(".notices").append($li);
+      });
+    }
+    if (resp.errors) {
+      resp.errors.forEach(function (str) {
+        var $li = $("<li class='error'>");
+        $li.html(str);
+        self.$infoEl.children(".errors").append($li);
+      });
+    }
+  }
 
 })

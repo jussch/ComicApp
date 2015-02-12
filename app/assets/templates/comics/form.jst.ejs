@@ -1,4 +1,10 @@
-<h1 class="title comic-form-title">Submit a new Comic</h1>
+<h1 class="title comic-form-title">
+  <% if (comic.id) { %>
+    Edit
+  <% } else { %>
+    Submit a new Comic
+  <% } %>
+</h1>
 
 <form id="comic-form" action="NOACTION" method="post">
 

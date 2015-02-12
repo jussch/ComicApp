@@ -12,7 +12,8 @@ window.ComicApp = {
     ComicApp.RootRouter = new ComicApp.Routers.Root({
       $contentEl: $('#content'),
       $headerEl: $('#header'),
-      $modalEl: $('#modal')
+      $modalEl: $('#modal'),
+      $infoEl: $('#info')
     });
 
     Backbone.history.start();

@@ -16,8 +16,9 @@ ComicApp.Views.HeaderShow = Backbone.ViewExt.extend({
       url: "api/sessions/destroy_current",
       type: "DELETE",
       dataType: 'json',
-      success: function () {
+      success: function (resp) {
         ComicApp.CU.fetch();
+        ComicApp.RootRouter.trigger('displayInfo', resp);
       }
     });
   },
