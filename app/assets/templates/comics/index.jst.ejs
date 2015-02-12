@@ -3,7 +3,7 @@
 <ul class="comics-list">
   <% comics.each(function (comic) { %>
     <li class="comic-item"><a href="#/comics/<%= comic.id %>" class="comic-link">
-      <%= comic.get('title') %>
+      <%= comic.escape('title') %>
     </a></li>
   <% }) %>
 </ul>
