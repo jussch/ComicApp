@@ -13,7 +13,7 @@ class Api::ComicsController < ApplicationController
     if @comic.save
       render json: @comic
     else
-      render json: @comic.errors.full_messages
+      render json: {errors: @comic.errors.full_messages}, status: 422
     end
   end
 
@@ -28,7 +28,7 @@ class Api::ComicsController < ApplicationController
     if @comic.update(comic_params)
       render json: @comic
     else
-      render json: @comic.errors.full_messages
+      render json: {errors: @comic.errors.full_messages}, status: 422
     end
   end
 
@@ -36,5 +36,5 @@ class Api::ComicsController < ApplicationController
   def comic_params
     params.require(:comic).permit(:title, :body, :image)
   end
-  
+
 end

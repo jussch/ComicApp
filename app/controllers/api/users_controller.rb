@@ -14,7 +14,7 @@ class Api::UsersController < ApplicationController
       sign_in!(@user)
       render json: {notices: ["You have been signed in"]}
     else
-      render json: @user.errors.full_messages, status: 422
+      render json: {errors: @user.errors.full_messages}, status: 422
     end
   end
 

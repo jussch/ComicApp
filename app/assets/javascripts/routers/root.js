@@ -75,9 +75,11 @@ ComicApp.Routers.Root = Backbone.Router.extend({
     this.removeModal();
     this._currentModal = view;
     this.$modalEl.html(view.render().$el);
+    this.$modalEl.removeClass("hidden");
   },
 
   displayInfo: function (resp) {
+    this.$infoEl.removeClass("hidden");
     var self = this;
     this.$infoEl.children("ul").empty();
     if (resp.notices) {
@@ -94,6 +96,10 @@ ComicApp.Routers.Root = Backbone.Router.extend({
         self.$infoEl.children(".errors").append($li);
       });
     }
+    this.$infoEl.animate({ opacity: 0}, 2000, function () {
+      self.$infoEl.addClass("hidden")
+      self.$infoEl.css("opacity", 1)
+    })
   }
 
 })
