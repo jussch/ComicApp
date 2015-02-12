@@ -1,6 +1,6 @@
 ComicApp.Collections.Users = Backbone.CollectionExt.extend({
 
-  model: ComicApp.Models.User
+  model: ComicApp.Models.User,
 
   url: "api/users"
 
