@@ -2,7 +2,7 @@ ComicApp.Routers.Root = Backbone.Router.extend({
 
   initialize: function (options) {
     _.extend(this, options);
-
+    this.listenTo(this, "swapModal", this.swapModal);
   },
 
   routes: {
@@ -53,10 +53,24 @@ ComicApp.Routers.Root = Backbone.Router.extend({
   },
 
   swapView: function (view) {
+    this.removeModal();
     this._currentView && this._currentView.remove();
     this._currentView = view;
 
     this.$contentEl.html(view.render().$el);
+  },
+
+  removeModal: function () {
+    if (this._currentModal) {
+      this._currentModal.remove();
+      this.$modalEl.addClass('hidden');
+    }
+  },
+
+  swapModal: function (view) {
+    this.removeModal();
+    this._currentModal = view;
+    this.$modalEl.html(view.render().$el);
   }
 
 
