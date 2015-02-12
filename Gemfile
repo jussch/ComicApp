@@ -48,3 +48,7 @@ end
 
 gem 'rails_12factor', group: :production
 gem 'backbone-on-rails'
+
+gem "figaro"
+gem "paperclip"
+gem "aws-sdk"
