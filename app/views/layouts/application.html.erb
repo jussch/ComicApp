@@ -8,14 +8,6 @@
 </head>
 <body>
 
-<% if signed_in? %>
-  hello <%= current_user.username %>
-  <form action="<%= destroy_current_sessions_url %>" method="post">
-    <%= auth_token %>
-    <input type="hidden" name="_method" value="DELETE">
-    <button name="Log Out">Log Out</button>
-  </form>
-<% end %>
 <%= yield %>
 
 </body>

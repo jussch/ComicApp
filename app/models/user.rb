@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   has_many :sessions
   has_many :authored_comics,
-    class_names: "Comic"
+    class_name: "Comic",
     foreign_key: :author_id
 
   def User.find_by_creds(params)

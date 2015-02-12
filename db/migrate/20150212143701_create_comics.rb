@@ -9,6 +9,6 @@ class CreateComics < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    add_index :author_id
+    add_index :comics, :author_id
   end
 end

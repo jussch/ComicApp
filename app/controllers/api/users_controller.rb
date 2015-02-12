@@ -18,6 +18,15 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def current
+    @user = current_user
+    if @user
+      render :show
+    else
+      render json: {errors: ["There is no current user"]}
+    end
+  end
+
   private
   def user_params
     params.require(:user).permit(:username, :password, :password_confirmation)

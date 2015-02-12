@@ -4,6 +4,7 @@ window.ComicApp = {
   Views: {},
   Routers: {},
   initialize: function() {
+    Vapour.CU
   }
 };
 
