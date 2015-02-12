@@ -53,8 +53,8 @@ Backbone.ViewExt = Backbone.CompositeView.extend({
     this.submitButtonToggle(true);
 
     this.model.save(data, {
-      success: this.submitSuccess,
-      error: this.submitError
+      success: this.submitSuccess.bind(this),
+      error: this.submitError.bind(this)
     })
   }
 

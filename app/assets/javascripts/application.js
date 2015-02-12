@@ -15,6 +15,7 @@
 //= require underscore
 //= require backbone
 //= require comic_app
+//= require jquery.serializejson
 //= require_tree ../templates
 //= require_tree ./utils
 //= require_tree ./models
