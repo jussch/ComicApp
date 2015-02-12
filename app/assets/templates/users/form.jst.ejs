@@ -1,0 +1,21 @@
+<h1 class="user-title modal-title">Make a new User</h1>
+
+<form id="user-form" action="NOACTION" method="post">
+  <label class="input-label">
+    <strong class="input-name">Username</strong>
+    <input type="text" name="user[username]" value="<%= user.get('username') %>" class="input-input">
+  </label>
+
+  <label class="input-label">
+    <strong class="input-name">Password</strong>
+    <input type="password" name="user[password]" value="" class="input-input">
+  </label>
+
+  <label class="input-label">
+    <strong class="input-name">Confirm Password</strong>
+    <input type="password" name="user[password_confirm]" value="" class="input-input">
+  </label>
+
+  <button class="input-button submit">Make New User</button>
+
+</form>

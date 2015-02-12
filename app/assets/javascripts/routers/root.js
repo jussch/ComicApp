@@ -3,6 +3,9 @@ ComicApp.Routers.Root = Backbone.Router.extend({
   initialize: function (options) {
     _.extend(this, options);
     this.listenTo(this, "swapModal", this.swapModal);
+    this.listenTo(this, "removeModal", this.removeModal);
+    this.header = new ComicApp.Views.HeaderShow({ model: ComicApp.CU });
+    this.$headerEl.html(this.header.render().$el);
   },
 
   routes: {

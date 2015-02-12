@@ -3,6 +3,18 @@ Backbone.ViewExt = Backbone.CompositeView.extend({
   modelName: "model",
   collectionName: "collection",
   renderEvent: function (content) {},
+  requireSignIn: false,
+
+  initialize: function (options) {
+    _.extend(this, options);
+    if (this.model) {
+      this.listenTo(this.model, "sync change", this.render);
+    }
+    if (this.collection) {
+      this.listenTo(this.collection, "sync change", this.render);
+    }
+    this.listenTo(ComicApp.CU, "sync change", this.render);
+  },
 
   render: function () {
     var options = {};
@@ -10,9 +22,14 @@ Backbone.ViewExt = Backbone.CompositeView.extend({
     options[this.collectionName] = this.collection;
 
     var content = this.template(options);
-    this.renderEvent(content);
     this.$el.html(content);
+    this.renderEvent();
     return this;
+  },
+
+  closeModal: function (event) {
+    event.preventDefault();
+    ComicApp.RootRouter.trigger('removeModal');
   },
 
   submitButtonToggle: function (toggle) {
@@ -33,6 +50,9 @@ Backbone.ViewExt = Backbone.CompositeView.extend({
     if (this.collection) {
       this.collection.add(this.model, { merge: true });
     }
+    if (resp.responseJSON && resp.responseJSON.notices) {
+      ComicApp.RootRouter.trigger('displayInfo', resp.responseJSON);
+    }
     Backbone.history.navigate(
       "/" + this.modelName + "s/" + this.model.id,
       { trigger: true }
@@ -44,8 +64,13 @@ Backbone.ViewExt = Backbone.CompositeView.extend({
     this.submitButtonToggle(false);
   },
 
-  sumbitForm: function (event) {
+  submitForm: function (event) {
     event.preventDefault();
+
+    if (this.requireSignIn) {
+      ComicApp.RootRouter.trigger('displayInfo', {errors: ["You Must be Signed In"]});
+      return
+    }
 
     var target = $(event.currentTarget);
     var data = target.serializeJSON()[this.modelName];

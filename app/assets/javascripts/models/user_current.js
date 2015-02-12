@@ -4,13 +4,22 @@ ComicApp.Models.CurrentUser = ComicApp.Models.User.extend({
   urlRoot: undefined,
   signedIn: false,
 
+  signIn: function () {
+    this.signedIn = true;
+  },
+
+  signOut: function () {
+    this.clear();
+    this.signedIn = false;
+  },
+
   parse: function (resp) {
     if (resp.errors) {
-      this.signedIn = false;
+      this.signOut();
       delete resp.errors;
       return resp;
     } else {
-      this.signedIn = true;
+      this.signIn();
       return ComicApp.Models.User.prototype.parse.call(this, resp);
     }
   }

@@ -4,10 +4,6 @@ ComicApp.Views.ComicsShow = Backbone.ViewExt.extend({
   modelName: "comic",
   collectionName: "comics",
 
-  initialize: function () {
-    this.listenTo(this.model, "sync", this.render);
-  },
-
   events: {
     "click .delete-comic": "deleteComic"
   },

@@ -3,13 +3,10 @@ ComicApp.Views.ComicsForm = Backbone.ViewExt.extend({
   template: JST['comics/form'],
   modelName: "comic",
   collectionName: "comics",
-
-  initialize: function () {
-    this.listenTo(this.model, "sync", this.render);
-  },
+  requireSignIn: true,
 
   events: {
-    'submit #comic-form': 'sumbitForm',
+    'submit #comic-form': 'submitForm',
     'change #image-upload': 'changeImage'
   },
 

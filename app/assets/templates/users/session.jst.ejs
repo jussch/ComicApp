@@ -1,0 +1,16 @@
+<h1 class="session-title modal-title">Sign In</h1>
+
+<form id="session-form" action="NOACTION" method="post">
+  <label class="input-label">
+    <strong class="input-name">Username</strong>
+    <input type="text" name="user[username]" value="<%= user.get('username') %>" class="input-input">
+  </label>
+
+  <label class="input-label">
+    <strong class="input-name">Password</strong>
+    <input type="password" name="user[password]" value="" class="input-input">
+  </label>
+
+  <button class="input-button submit">Sign In</button>
+
+</form>

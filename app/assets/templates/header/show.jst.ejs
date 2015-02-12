@@ -1,0 +1,8 @@
+<h1 class="header-title"><a href="#comics">Jeff's Comics</a></h1>
+<% if (user.signedIn) { %>
+  Hey <%= user.get('username') %>
+  <button class="user-log-out">Log Out</button>
+<% } else { %>
+  <button class="user-log-in">Log In</button>
+  <button class="user-sign-up">Sign Up</button>
+<% } %>
